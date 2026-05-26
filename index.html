@@ -1379,40 +1379,84 @@ footer {
           </div>
         </div>
       </div>
-      <!-- School Data Explorer Card -->
+      <!-- Daily Survey Collection Timeline -->
       <div class="col-12" style="margin-top: 2rem;">
         <div class="chart-card">
           <div class="chart-card-header">
-            <h3 class="chart-title"><i data-lucide="search"></i> مستكشف بيانات المدارس التفاعلي</h3>
+            <h3 class="chart-title"><i data-lucide="calendar"></i> خط زمن جمع الاستمارات اليومي (مايو 2026)</h3>
+          </div>
+          <p style="font-size:0.9rem; color:var(--mid-gray); margin-bottom: 1.5rem;">يوضح هذا الرسم البياني وتيرة العمل اليومية لجمع وأرشفة 1,928 استمارة استبيان على مدار الشهر.</p>
+          <div id="chart-timeline" style="min-height: 280px;"></div>
+        </div>
+      </div>
+
+      <!-- School Data Explorer Card (Upgraded to Comparative) -->
+      <div class="col-12" style="margin-top: 2rem;">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3 class="chart-title"><i data-lucide="git-compare"></i> مقارنة المدارس التفاعلية (مقارنة جنباً إلى جنب)</h3>
           </div>
           <div class="school-explorer-container">
-            <p style="font-size:0.95rem; color:var(--mid-gray)">اختر أي مدرسة من المدارس المغطاة لاستكشاف أرقامها الخاصة، ونسبة الجنسين، وأعلى الكليات طلباً لطلابها:</p>
-            <div class="school-select-wrapper">
-              <select id="school-selector" class="school-select">
-                <option value="">-- اختر مدرسة --</option>
-                <!-- Populated by JS -->
-              </select>
-            </div>
+            <p style="font-size:0.95rem; color:var(--mid-gray); margin-bottom: 1.5rem;">اختر مدرستين لمقارنة أعداد الطلبة، توزيع الجنسين، والتخصصات الأكثر طلباً بينهما:</p>
             
-            <div class="school-stats-grid" id="school-stats-container" style="display: none;">
-              <div class="school-stat-card">
-                <h4 style="font-size: 0.95rem; color: var(--mid-gray);">عدد الطلبة المشاركين</h4>
-                <div class="school-stat-val font-barlow" id="school-stat-total">0</div>
-              </div>
-              <div class="school-stat-card">
-                <h4 style="font-size: 0.95rem; color: var(--mid-gray);">توزيع الجنسين</h4>
-                <div style="margin-top: 1rem; display: flex; justify-content: space-around; font-weight: 700;">
-                  <span style="color: var(--action-orange);">إناث: <span id="school-stat-female">0</span></span>
-                  <span style="color: var(--light-blue);">ذكور: <span id="school-stat-male">0</span></span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+              <!-- School 1 Column -->
+              <div class="comparison-column" style="background: rgba(0, 0, 0, 0.01); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.03);">
+                <h4 style="margin-bottom: 1rem; color: var(--primary-blue); font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="building"></i> المدرسة الأولى</h4>
+                <div class="school-select-wrapper" style="max-width: 100%; margin-bottom: 1.5rem;">
+                  <select id="school-selector-1" class="school-select">
+                    <option value="">-- اختر المدرسة الأولى --</option>
+                  </select>
+                </div>
+                <div id="school-stats-container-1" style="display: none; flex-direction: column; gap: 1rem;">
+                  <div class="school-stat-card">
+                    <h5 style="font-size: 0.85rem; color: var(--mid-gray);">عدد الطلبة المشاركين</h5>
+                    <div class="school-stat-val font-barlow" id="school-stat-total-1" style="font-size: 2rem;">0</div>
+                  </div>
+                  <div class="school-stat-card">
+                    <h5 style="font-size: 0.85rem; color: var(--mid-gray);">توزيع الجنسين</h5>
+                    <div style="margin-top: 0.5rem; display: flex; justify-content: space-around; font-weight: 700; font-size: 0.95rem;">
+                      <span style="color: var(--action-orange);">إناث: <span id="school-stat-female-1">0</span></span>
+                      <span style="color: var(--light-blue);">ذكور: <span id="school-stat-male-1">0</span></span>
+                    </div>
+                  </div>
+                  <div class="school-stat-card">
+                    <h5 style="font-size: 0.85rem; color: var(--mid-gray); margin-bottom: 0.5rem;">الكليات الأكثر طلباً</h5>
+                    <ol id="school-stat-colleges-1" style="text-align: right; padding-right: 1.25rem; font-weight: 600; line-height: 1.6; font-size: 0.9rem;">
+                    </ol>
+                  </div>
                 </div>
               </div>
-              <div class="school-stat-card" style="grid-column: span 2;">
-                <h4 style="font-size: 0.95rem; color: var(--mid-gray); margin-bottom: 0.5rem;">الكليات الأكثر طلباً في هذه المدرسة</h4>
-                <ol id="school-stat-colleges" style="text-align: right; padding-right: 1.5rem; font-weight: 600; line-height: 1.8;">
-                  <!-- Populated by JS -->
-                </ol>
+
+              <!-- School 2 Column -->
+              <div class="comparison-column" style="background: rgba(0, 0, 0, 0.01); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.03);">
+                <h4 style="margin-bottom: 1rem; color: var(--action-orange); font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="building"></i> المدرسة الثانية</h4>
+                <div class="school-select-wrapper" style="max-width: 100%; margin-bottom: 1.5rem;">
+                  <select id="school-selector-2" class="school-select">
+                    <option value="">-- اختر المدرسة الثانية --</option>
+                  </select>
+                </div>
+                <div id="school-stats-container-2" style="display: none; flex-direction: column; gap: 1rem;">
+                  <div class="school-stat-card">
+                    <h5 style="font-size: 0.85rem; color: var(--mid-gray);">عدد الطلبة المشاركين</h5>
+                    <div class="school-stat-val font-barlow" id="school-stat-total-2" style="font-size: 2rem; color: var(--action-orange);">0</div>
+                  </div>
+                  <div class="school-stat-card">
+                    <h5 style="font-size: 0.85rem; color: var(--mid-gray);">توزيع الجنسين</h5>
+                    <div style="margin-top: 0.5rem; display: flex; justify-content: space-around; font-weight: 700; font-size: 0.95rem;">
+                      <span style="color: var(--action-orange);">إناث: <span id="school-stat-female-2">0</span></span>
+                      <span style="color: var(--light-blue);">ذكور: <span id="school-stat-male-2">0</span></span>
+                    </div>
+                  </div>
+                  <div class="school-stat-card">
+                    <h5 style="font-size: 0.85rem; color: var(--mid-gray); margin-bottom: 0.5rem;">الكليات الأكثر طلباً</h5>
+                    <ol id="school-stat-colleges-2" style="text-align: right; padding-right: 1.25rem; font-weight: 600; line-height: 1.6; font-size: 0.9rem;">
+                    </ol>
+                  </div>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -1556,7 +1600,17 @@ footer {
             <h4 class="wizard-result-title">الكلية المقترحة لك بناءً على خياراتك</h4>
             <div class="wizard-result-college" id="wizard-result-college">كلية الهندسة</div>
             <p class="wizard-result-desc" id="wizard-result-desc">لقد أظهرت خياراتك شغفاً كبياً بالبناء والتحليل وتفضيلك للمهارات التقنية والبيئات الإبداعية. قد تكون الهندسة هي وجهتك المثالية لتفجير طاقاتك!</p>
-            <button class="wizard-btn-reset" id="wizard-btn-reset"><i data-lucide="rotate-ccw"></i> إعادة المقياس</button>
+            
+            <!-- Wizard Stats & Actions -->
+            <div style="background: rgba(255, 255, 255, 0.08); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--glass-border); margin: 1.5rem auto 2.5rem; max-width: 500px;">
+              <p style="font-size: 0.95rem; color: var(--light-gray); margin-bottom: 1rem;" id="wizard-result-stats">
+                شعبية التخصص: اختار هذا التخصص 0 طالب بنسبة 0%
+              </p>
+              <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="wizard-btn-reset" id="wizard-btn-view-questions" style="background-color: var(--primary-blue);"><i data-lucide="help-circle"></i> تصفح أسئلة الطلاب</button>
+                <button class="wizard-btn-reset" id="wizard-btn-reset"><i data-lucide="rotate-ccw"></i> إعادة المقياس</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1646,6 +1700,44 @@ footer {
           </div>
           <p style="font-size:0.9rem; color:var(--mid-gray); margin-bottom: 1.5rem;">أكثر الهوايات شغفاً لدى الطلاب والتي يرغبون بتطويرها كأنشطة موازية</p>
           <div id="chart-hobbies" style="min-height: 300px;"></div>
+        </div>
+      </div>
+
+      <!-- Interactive Skills & Hobbies Explorer Card -->
+      <div class="col-12" style="margin-top: 2rem;">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3 class="chart-title"><i data-lucide="search-code"></i> مستكشف المهارات والهوايات التفصيلي</h3>
+            <div class="chart-controls" id="explorer-tabs">
+              <button class="control-btn active" data-type="skills">كل المهارات</button>
+              <button class="control-btn" data-type="hobbies">كل الهوايات</button>
+            </div>
+          </div>
+          <p style="font-size:0.95rem; color:var(--mid-gray); margin-bottom: 1.5rem;">تصفح واكتشف الاهتمامات الفريدة التي عبر عنها الطلبة في الاستبيانات. استخدم شريط البحث للتصفح السريع:</p>
+          
+          <!-- Search input -->
+          <div style="margin-bottom: 1.5rem; position: relative;">
+            <input type="text" id="explorer-search-input" placeholder="ابحث عن مهارة أو هواية..." style="width: 100%; max-width: 400px; padding: 0.75rem 1rem; border: 1px solid rgba(0,0,0,0.1); border-radius: 6px; font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color var(--transition-fast);" />
+          </div>
+
+          <!-- Tags list container -->
+          <div class="explorer-results-container" style="display: flex; flex-direction: column; gap: 2rem; max-height: 450px; overflow-y: auto; padding: 0.5rem; border: 1px solid rgba(0,0,0,0.03); border-radius: 8px; background: rgba(0,0,0,0.01);">
+            <!-- Popular section -->
+            <div id="explorer-section-popular">
+              <h4 style="font-size: 0.95rem; color: var(--dark-navy); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.03); padding-bottom: 0.5rem;"><i data-lucide="sparkles" style="color:var(--action-orange); width:18px; height:18px;"></i> طلبات شائعة (5 تكرارات فأكثر)</h4>
+              <div class="badge-list" id="explorer-list-popular">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Niche section -->
+            <div id="explorer-section-niche">
+              <h4 style="font-size: 0.95rem; color: var(--mid-gray); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.03); padding-bottom: 0.5rem;"><i data-lucide="compass" style="width:18px; height:18px;"></i> اهتمامات فردية ونادرة</h4>
+              <div class="badge-list" id="explorer-list-niche" style="gap: 0.5rem;">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -3813,6 +3905,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 13. NEW COMPONENT: Initialize Interactive Recommendation Wizard
   initRecommendationWizard();
+
+  // 14. NEW COMPONENT: Initialize Timeline Chart
+  initTimelineChart();
+
+  // 15. NEW COMPONENT: Initialize Skills & Hobbies Tag Explorer
+  initTagExplorer();
 });
 
 // Primary Palette (matches Wejha Brand Guidelines)
@@ -4533,59 +4631,75 @@ function initScrollAnimations() {
 }
 
 
-// 11. NEW COMPONENT: Initialize School Data Explorer
+// 11. NEW COMPONENT: Initialize School Data Explorer (Upgraded to Comparative Side-by-Side)
 function initSchoolExplorer() {
-  const selector = document.getElementById("school-selector");
-  const container = document.getElementById("school-stats-container");
-  if (!selector) return;
+  const selector1 = document.getElementById("school-selector-1");
+  const selector2 = document.getElementById("school-selector-2");
+  if (!selector1 || !selector2) return;
 
   const breakdown = wejhaData.school_breakdown;
   const schoolNames = Object.keys(breakdown).sort();
 
-  // Populate Select Options
+  // Populate Select Options for both
   schoolNames.forEach(school => {
-    const opt = document.createElement("option");
-    opt.value = school;
-    opt.textContent = school;
-    selector.appendChild(opt);
+    const opt1 = document.createElement("option");
+    opt1.value = school;
+    opt1.textContent = school;
+    selector1.appendChild(opt1);
+
+    const opt2 = document.createElement("option");
+    opt2.value = school;
+    opt2.textContent = school;
+    selector2.appendChild(opt2);
   });
 
-  selector.addEventListener("change", () => {
-    const schoolVal = selector.value;
-    if (!schoolVal) {
-      container.style.display = "none";
-      return;
-    }
+  function bindSelector(selector, containerId, totalId, femaleId, maleId, collegesId) {
+    const container = document.getElementById(containerId);
+    selector.addEventListener("change", () => {
+      const schoolVal = selector.value;
+      if (!schoolVal) {
+        container.style.display = "none";
+        return;
+      }
 
-    const schoolData = breakdown[schoolVal];
-    
-    // Total Students
-    document.getElementById("school-stat-total").textContent = schoolData.total.toLocaleString("ar-LY");
-    
-    // Gender Breakdown
-    const femaleCount = schoolData.gender["أنثى"] || 0;
-    const maleCount = schoolData.gender["ذكر"] || 0;
-    const totalCount = femaleCount + maleCount;
-    const fPct = Math.round((femaleCount / totalCount) * 100);
-    const mPct = 100 - fPct;
+      const schoolData = breakdown[schoolVal];
+      
+      // Total Students
+      document.getElementById(totalId).textContent = schoolData.total.toLocaleString("ar-LY");
+      
+      // Gender Breakdown
+      const femaleCount = schoolData.gender["أنثى"] || 0;
+      const maleCount = schoolData.gender["ذكر"] || 0;
+      const totalCount = femaleCount + maleCount;
+      const fPct = totalCount > 0 ? Math.round((femaleCount / totalCount) * 100) : 0;
+      const mPct = totalCount > 0 ? 100 - fPct : 0;
 
-    document.getElementById("school-stat-female").textContent = `${femaleCount.toLocaleString("ar-LY")} (${fPct.toLocaleString("ar-LY")}%)`;
-    document.getElementById("school-stat-male").textContent = `${maleCount.toLocaleString("ar-LY")} (${mPct.toLocaleString("ar-LY")}%)`;
+      document.getElementById(femaleId).textContent = `${femaleCount.toLocaleString("ar-LY")} (${fPct.toLocaleString("ar-LY")}%)`;
+      document.getElementById(maleId).textContent = `${maleCount.toLocaleString("ar-LY")} (${mPct.toLocaleString("ar-LY")}%)`;
 
-    // Top 3 Colleges
-    const collegesList = document.getElementById("school-stat-colleges");
-    collegesList.innerHTML = "";
+      // Top 3 Colleges (Filter out "غير محدد" / "غير حدد")
+      const collegesList = document.getElementById(collegesId);
+      collegesList.innerHTML = "";
 
-    schoolData.top_colleges.forEach(col => {
-      const colName = col[0];
-      const colCount = col[1];
-      const item = document.createElement("li");
-      item.innerHTML = `${colName} <span class="font-barlow" style="color:var(--action-orange); font-weight:700; margin-right: 0.5rem;">(${colCount.toLocaleString("ar-LY")} طالب/ـة)</span>`;
-      collegesList.appendChild(item);
+      const filteredColleges = schoolData.top_colleges
+        .filter(col => col[0] !== "غير محدد" && col[0] !== "غير حدد")
+        .slice(0, 3);
+
+      filteredColleges.forEach(col => {
+        const colName = col[0];
+        const colCount = col[1];
+        const item = document.createElement("li");
+        item.innerHTML = `${colName} <span class="font-barlow" style="color:var(--action-orange); font-weight:700; margin-right: 0.5rem;">(${colCount.toLocaleString("ar-LY")} طالب/ـة)</span>`;
+        collegesList.appendChild(item);
+      });
+
+      container.style.display = "flex";
+      lucide.createIcons();
     });
+  }
 
-    container.style.display = "grid";
-  });
+  bindSelector(selector1, "school-stats-container-1", "school-stat-total-1", "school-stat-female-1", "school-stat-male-1", "school-stat-colleges-1");
+  bindSelector(selector2, "school-stats-container-2", "school-stat-total-2", "school-stat-female-2", "school-stat-male-2", "school-stat-colleges-2");
 }
 
 // 12. NEW COMPONENT: Initialize Major Questions Hub
@@ -4689,6 +4803,18 @@ function initRecommendationWizard() {
         const rec = getWizardRecommendation(answers);
         resultCollege.textContent = rec.college;
         resultDesc.textContent = rec.desc;
+        
+        // Calculate and load real statistics for Step 5
+        const overallData = wejhaData.colleges_overall;
+        const found = overallData.find(x => x[0] === rec.college);
+        const count = found ? found[1] : 0;
+        const pct = ((count / wejhaData.total_records) * 100).toFixed(1);
+        
+        const statsEl = document.getElementById("wizard-result-stats");
+        if (statsEl) {
+          statsEl.innerHTML = `<strong>شعبية التخصص:</strong> اختار هذا التخصص <span class="font-barlow" style="color:var(--action-orange); font-size:1.15rem; font-weight:700;">${count.toLocaleString('ar-LY')}</span> طالب وطالبة بنسبة <span class="font-barlow" style="color:var(--action-orange); font-size:1.15rem; font-weight:700;">${pct.toLocaleString('ar-LY')}%</span> من إجمالي الطلبة المشاركين في الاستبيان.`;
+        }
+
         showStep(5);
       }
     });
@@ -4703,6 +4829,35 @@ function initRecommendationWizard() {
 
   // Reset Button click
   btnReset.addEventListener("click", resetWizard);
+
+  // Link Wizard result directly to Questions Hub
+  const btnViewQuestions = document.getElementById("wizard-btn-view-questions");
+  if (btnViewQuestions) {
+    btnViewQuestions.addEventListener("click", () => {
+      const collegeName = resultCollege.textContent;
+      const cards = document.querySelectorAll(".college-q-card");
+      let foundCard = null;
+      cards.forEach(card => {
+        const h4 = card.querySelector("h4");
+        if (h4 && h4.textContent === collegeName) {
+          foundCard = card;
+        }
+      });
+
+      if (foundCard) {
+        foundCard.click();
+        const displayBox = document.getElementById("questions-display-box");
+        if (displayBox) {
+          displayBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else {
+        const collegesSection = document.getElementById("colleges");
+        if (collegesSection) {
+          collegesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  }
 
   function showStep(step) {
     currentStep = step;
@@ -4778,7 +4933,7 @@ function initRecommendationWizard() {
         desc = "اهتمامك بالتقنية ورغبتك في تطوير مهارات البرمجة والحل المنطقي والعمل خلف الشاشات يوجهك مباشرة نحو تقنية المعلومات، التخصص الأسرع نمواً والمستقبل الرقمي! 💻🚀";
       } else if (interest === "design") {
         college = "كلية الهندسة";
-        desc = "مزجك الرائع بين الشغف بالتصميم والبناء وقدرات التحليل المنطقي يشير بقوة نحو الهندسة (خاصة المعمارية أو المدنية) حيث الإبداع على أرض الواقع! 🏗️📐";
+        desc = "مزيجك الرائع بين الشغف بالتصميم والبناء وقدرات التحليل المنطقي يشير بقوة نحو الهندسة (خاصة المعمارية أو المدنية) حيث الإبداع على أرض الواقع! 🏗️📐";
       } else {
         college = "كلية الاقتصاد";
         desc = "اهتمامك بالأرقام والعلوم الإدارية وإدارة الأعمال، مترافقاً مع تفكيرك المنظم وتطلعك للقيادة، يجعلك مناسباً تماماً لإدارة المشاريع والاقتصاد الرياضي! 📊💼";
@@ -4800,6 +4955,166 @@ function initRecommendationWizard() {
     }
     return { college, desc };
   }
+}
+
+// 14. NEW COMPONENT: Initialize Timeline Chart
+function initTimelineChart() {
+  const timelineData = wejhaData.timeline;
+  if (!timelineData) return;
+
+  const dates = Object.keys(timelineData);
+  const counts = Object.values(timelineData);
+
+  const timelineOptions = {
+    series: [{
+      name: 'الاستمارات المجمعة اليوم',
+      data: counts
+    }],
+    chart: {
+      type: 'area',
+      height: 280,
+      fontFamily: 'IBM Plex Arabic, sans-serif',
+      toolbar: { show: false },
+      zoom: { enabled: false }
+    },
+    colors: [colors.actionOrange],
+    dataLabels: { enabled: false },
+    stroke: { curve: 'smooth', width: 3 },
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.4,
+        opacityTo: 0.05,
+        stops: [0, 100]
+      }
+    },
+    xaxis: {
+      categories: dates.map(d => {
+        const p = d.split('-');
+        return `${parseInt(p[2]).toLocaleString('ar-LY')} مايو`;
+      }),
+      labels: {
+        style: { fontSize: '11px', fontWeight: 600 }
+      }
+    },
+    yaxis: {
+      labels: {
+        align: 'right',
+        style: { fontSize: '11px' },
+        formatter: function (val) {
+          return val.toLocaleString('ar-LY');
+        }
+      }
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return `${val.toLocaleString('ar-LY')} استمارة`;
+        }
+      }
+    }
+  };
+
+  const timelineChart = new ApexCharts(document.querySelector("#chart-timeline"), timelineOptions);
+  timelineChart.render();
+}
+
+// 15. NEW COMPONENT: Initialize Skills & Hobbies Tag Explorer
+function initTagExplorer() {
+  const tabs = document.querySelectorAll("#explorer-tabs .control-btn");
+  const searchInput = document.getElementById("explorer-search-input");
+  const listPopular = document.getElementById("explorer-list-popular");
+  const listNiche = document.getElementById("explorer-list-niche");
+  const sectionPopular = document.getElementById("explorer-section-popular");
+  const sectionNiche = document.getElementById("explorer-section-niche");
+  if (!listPopular || !listNiche) return;
+
+  let currentType = "skills";
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      currentType = tab.getAttribute("data-type");
+      renderExplorerTags();
+    });
+  });
+
+  searchInput.addEventListener("input", renderExplorerTags);
+
+  function renderExplorerTags() {
+    const query = searchInput.value.trim().toLowerCase();
+    const dataList = currentType === "skills" ? wejhaData.skills : wejhaData.hobbies;
+    
+    listPopular.innerHTML = "";
+    listNiche.innerHTML = "";
+    
+    // Filter and sort the entire dataset descending by count
+    const filteredList = dataList
+      .filter(item => {
+        const name = item[0];
+        if (name === "لا يوجد" || name === "لا يوجد قدوة محددة") return false;
+        if (query) {
+          return name.toLowerCase().includes(query);
+        }
+        return true;
+      })
+      .sort((a, b) => b[1] - a[1]);
+
+    if (filteredList.length === 0) {
+      sectionPopular.style.display = "none";
+      sectionNiche.style.display = "block";
+      listNiche.innerHTML = `<div style="padding: 2rem; text-align: center; color: var(--mid-gray); width: 100%;">لا توجد نتائج مطابقة لبحثك.</div>`;
+      return;
+    }
+
+    let popularCount = 0;
+    let nicheCount = 0;
+
+    filteredList.forEach(item => {
+      const name = item[0];
+      const count = item[1];
+      
+      const badge = document.createElement("div");
+      
+      if (count >= 5) {
+        popularCount++;
+        badge.className = "skill-badge";
+        badge.style.border = "1px solid rgba(26, 47, 181, 0.15)";
+        badge.style.background = "rgba(26, 47, 181, 0.02)";
+        badge.innerHTML = `
+          <span style="font-weight:600; color:var(--dark-navy);">${name}</span>
+          <span class="badge-count font-barlow" style="background-color: var(--action-orange);">${count.toLocaleString('ar-LY')}</span>
+        `;
+        listPopular.appendChild(badge);
+      } else {
+        nicheCount++;
+        badge.className = "skill-badge";
+        // Apply smaller niche styling
+        badge.style.padding = "0.4rem 0.8rem";
+        badge.style.fontSize = "0.8rem";
+        badge.style.backgroundColor = "var(--pure-white)";
+        badge.style.borderColor = "rgba(0, 0, 0, 0.05)";
+        badge.style.color = "var(--dark-text)";
+        badge.innerHTML = `
+          <span>${name}</span>
+          <span class="badge-count font-barlow" style="background-color: var(--mid-gray); font-size: 0.75rem; padding: 0.1rem 0.4rem;">${count.toLocaleString('ar-LY')}</span>
+        `;
+        listNiche.appendChild(badge);
+      }
+    });
+
+    // Toggle Section visibility
+    sectionPopular.style.display = popularCount > 0 ? "block" : "none";
+    sectionNiche.style.display = nicheCount > 0 ? "block" : "none";
+    
+    // Initialize Lucide Icons if any
+    lucide.createIcons();
+  }
+
+  // Initial render
+  renderExplorerTags();
 }
 
 </script>
