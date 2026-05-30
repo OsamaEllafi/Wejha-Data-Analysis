@@ -15,15 +15,16 @@
 
 /* Design Tokens & CSS Variables */
 :root {
-  --primary-blue: #1A2FB5;
-  --action-orange: #E84D1C;
-  --dark-navy: #0D1A6E;
-  --light-blue: #3D57D4;
-  --light-gray: #F4F5F8;
+  --primary-blue: #00389E;
+  --action-orange: #FF4900;
+  --dark-navy: #001F8F;
+  --light-blue: #1E50C2;
+  --light-gray: #F1F2F2;
   --mid-gray: #9099B5;
   --pure-white: #FFFFFF;
-  --dark-text: #1E293B;
+  --dark-text: #001F8F;
   --light-text: #F8FAFC;
+  --vibrant-red: #FF3324;
   --glass-bg: rgba(255, 255, 255, 0.08);
   --glass-border: rgba(255, 255, 255, 0.15);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -47,7 +48,7 @@ html {
 }
 
 body {
-  font-family: 'IBM Plex Arabic', sans-serif;
+  font-family: 'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif;
   background-color: var(--light-gray);
   color: var(--dark-text);
   line-height: 1.6;
@@ -73,7 +74,7 @@ body {
 
 /* Typography Rules */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cairo', sans-serif;
+  font-family: 'DIN Next LT Arabic', 'Cairo', sans-serif;
   font-weight: 700;
   color: var(--dark-navy);
 }
@@ -101,9 +102,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pulse-orange {
-  0% { box-shadow: 0 0 0 0 rgba(232, 77, 28, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(232, 77, 28, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(232, 77, 28, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(255, 73, 0, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 73, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 73, 0, 0); }
 }
 
 @keyframes slide-diagonal {
@@ -194,7 +195,7 @@ header {
 
 /* Hero Section */
 .hero {
-  background: radial-gradient(circle at 10% 20%, var(--dark-navy) 0%, var(--primary-blue) 100%);
+  background-color: var(--dark-navy);
   color: var(--pure-white);
   padding: 5rem 2rem;
   position: relative;
@@ -291,7 +292,7 @@ header {
 .kpi-card:hover {
   transform: translateY(-5px);
   border-color: var(--action-orange);
-  box-shadow: 0 10px 20px rgba(13, 26, 110, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 31, 143, 0.2);
 }
 
 .kpi-icon-wrapper {
@@ -525,7 +526,7 @@ section {
 }
 
 .data-table tr:hover {
-  background-color: rgba(26, 47, 181, 0.02);
+  background-color: rgba(0, 56, 158, 0.02);
 }
 
 .progress-bar-container {
@@ -569,7 +570,7 @@ section {
   transform: translateY(-3px);
   background-color: var(--pure-white);
   box-shadow: var(--shadow-md);
-  border: 1px solid rgba(26, 47, 181, 0.1);
+  border: 1px solid rgba(0, 56, 158, 0.1);
 }
 
 .profile-avatar-circle {
@@ -655,7 +656,7 @@ section {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--light-blue) 0%, var(--primary-blue) 100%);
+  background-color: var(--primary-blue);
   color: var(--pure-white);
   font-size: 2.25rem;
   display: flex;
@@ -730,7 +731,7 @@ section {
   content: '“';
   font-family: 'Cairo', sans-serif;
   font-size: 8rem;
-  color: rgba(232, 77, 28, 0.1);
+  color: rgba(255, 73, 0, 0.1);
   position: absolute;
   top: -10px;
   right: 30px;
@@ -912,8 +913,8 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(45deg, rgba(232, 77, 28, 0.02) 25%, transparent 25%),
-                    linear-gradient(-45deg, rgba(232, 77, 28, 0.02) 25%, transparent 25%);
+  background-image: linear-gradient(45deg, rgba(255, 73, 0, 0.015) 25%, transparent 25%),
+                    linear-gradient(-45deg, rgba(255, 73, 0, 0.015) 25%, transparent 25%);
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 1;
@@ -1077,7 +1078,7 @@ footer {
 
 /* Major Recommendation Wizard Styling */
 .wizard-card {
-  background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+  background-color: var(--dark-navy);
   color: var(--pure-white);
   border-radius: 8px;
   padding: 3rem;
@@ -1283,10 +1284,10 @@ footer {
     <div class="hero-container">
       <div class="hero-badge">
         <i data-lucide="award"></i>
-        <span>مشروع وجهة 2026 | اتجاهك يبدأ هنا</span>
+        <span>مشروع وجهة 2026 | وجهتك تبدأ من هنا</span>
       </div>
       <h1 class="hero-title">تقرير تحليل بيانات طلبة المدارس</h1>
-      <p class="hero-subtitle">دراسة شاملة ومفصلة لبيانات 1,928 طالب وطالبة من مدارس مدينة بنغازي، تهدف إلى فهم تطلعاتهم الأكاديمية والمهنية وتنمية مهاراتهم.</p>
+      <p class="hero-subtitle">«حسن اختيارك هو بداية مشوارك» — دراسة شاملة ومفصلة لبيانات 1,928 طالب وطالبة من مدارس مدينة بنغازي، تهدف إلى فهم تطلعاتهم الأكاديمية والمهنية وتنمية مهاراتهم.</p>
       
       <!-- KPI Grid -->
       <div class="kpi-grid">
@@ -1761,7 +1762,7 @@ footer {
     <div class="section-header">
       <span class="section-tag">نبض الميدان</span>
       <h2 class="section-title">ملاحظات وآراء الطلبة حول الاستبيان</h2>
-      <p class="section-desc">مقتطفات من تعليقات وملاحظات طلبة المدارس، التي توضح طموحاتهم ومقترحاتهم للتطوير الأكاديمي.</p>
+      <p class="section-desc">مقتطفات من تعليقات وملاحظات طلبة المدارس (خلي ديما عندك وجهة) التي توضح طموحاتهم ومقترحاتهم للتطوير الأكاديمي.</p>
     </div>
     
     <div class="testimonials-slider-container">
@@ -1811,7 +1812,7 @@ footer {
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </a>
         </div>
-        <p style="color:var(--mid-gray); font-size:0.85rem; margin-top:1.5rem;">الهاشتاق الرسمي: <strong style="color:var(--pure-white);">#مشروع_وجهة</strong></p>
+        <p style="color:var(--mid-gray); font-size:0.85rem; margin-top:1.5rem;">الهاشتاق الرسمي: <strong style="color:var(--pure-white);">#وجهتك_تبدأ_من_هنا</strong></p>
       </div>
     </div>
     
@@ -3913,19 +3914,19 @@ document.addEventListener('DOMContentLoaded', () => {
   initTagExplorer();
 });
 
-// Primary Palette (matches Wejha Brand Guidelines)
+// Primary Palette (matches Wejha Brand Guidelines v2)
 const colors = {
-  primaryBlue: '#1A2FB5',
-  actionOrange: '#E84D1C',
-  darkNavy: '#0D1A6E',
-  lightBlue: '#3D57D4',
+  primaryBlue: '#00389E',
+  actionOrange: '#FF4900',
+  darkNavy: '#001F8F',
+  lightBlue: '#1E50C2',
   midGray: '#9099B5',
   success: '#10B981',
   warning: '#F59E0B',
   info: '#3B82F6',
   gender: {
-    female: '#E84D1C', // Action Orange for Females as per brand guidelines highlight
-    male: '#3D57D4'    // Light Blue for Males
+    female: '#FF4900', // Action Orange for Females as per brand guidelines v2
+    male: '#1E50C2'    // Light Blue/Secondary Blue for Males
   }
 };
 
@@ -3975,7 +3976,7 @@ function renderDemographics() {
     chart: {
       type: 'bar',
       height: 280,
-      fontFamily: 'IBM Plex Arabic, sans-serif',
+      fontFamily: "'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif",
       toolbar: { show: false }
     },
     colors: [colors.primaryBlue, colors.lightBlue, colors.actionOrange, colors.darkNavy, colors.midGray],
@@ -4078,7 +4079,7 @@ function renderCollegeDesires() {
     chart: {
       type: 'bar',
       height: 400,
-      fontFamily: 'IBM Plex Arabic, sans-serif',
+      fontFamily: "'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif",
       toolbar: { show: false }
     },
     plotOptions: {
@@ -4217,7 +4218,7 @@ function renderCollegeDesires() {
     chart: {
       type: 'bar',
       height: 250,
-      fontFamily: 'IBM Plex Arabic, sans-serif',
+      fontFamily: "'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif",
       toolbar: { show: false }
     },
     colors: [colors.lightBlue],
@@ -4252,7 +4253,7 @@ function renderCollegeDesires() {
     chart: {
       type: 'bar',
       height: 250,
-      fontFamily: 'IBM Plex Arabic, sans-serif',
+      fontFamily: "'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif",
       toolbar: { show: false }
     },
     colors: [colors.actionOrange],
@@ -4299,7 +4300,7 @@ function renderInfluences() {
     chart: {
       type: 'donut',
       height: 320,
-      fontFamily: 'IBM Plex Arabic, sans-serif'
+      fontFamily: "'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif"
     },
     labels: infCategories,
     colors: [colors.darkNavy, colors.primaryBlue, colors.actionOrange, colors.lightBlue, colors.midGray],
@@ -4335,7 +4336,7 @@ function renderInfluences() {
     chart: {
       type: 'bar',
       height: 300,
-      fontFamily: 'IBM Plex Arabic, sans-serif',
+      fontFamily: "'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif",
       toolbar: { show: false }
     },
     plotOptions: {
@@ -4413,7 +4414,7 @@ function renderSkillsAndHobbies() {
     chart: {
       type: 'bar',
       height: 300,
-      fontFamily: 'IBM Plex Arabic, sans-serif',
+      fontFamily: "'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif",
       toolbar: { show: false }
     },
     colors: [colors.primaryBlue],
@@ -4455,7 +4456,7 @@ function renderSkillsAndHobbies() {
     chart: {
       type: 'bar',
       height: 300,
-      fontFamily: 'IBM Plex Arabic, sans-serif',
+      fontFamily: "'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif",
       toolbar: { show: false }
     },
     colors: [colors.actionOrange],
@@ -4973,7 +4974,7 @@ function initTimelineChart() {
     chart: {
       type: 'area',
       height: 280,
-      fontFamily: 'IBM Plex Arabic, sans-serif',
+      fontFamily: "'DIN Next LT Arabic', 'IBM Plex Arabic', sans-serif",
       toolbar: { show: false },
       zoom: { enabled: false }
     },
