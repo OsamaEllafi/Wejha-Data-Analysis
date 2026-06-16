@@ -1247,6 +1247,297 @@ footer {
   transform: scale(1.03);
 }
 
+/* ==========================================
+   RESPONSIVE & MOBILE COMPATIBILITY STYLES 
+   ========================================== */
+
+/* Mobile Navigation Toggle Button */
+.nav-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--pure-white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-menu-toggle:hover {
+  color: var(--action-orange);
+}
+
+.nav-menu-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Responsive School Comparison Grid */
+.school-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Center team cards when they collapse */
+#team-container {
+  justify-items: center;
+}
+
+@media (max-width: 1024px) {
+  .header-container {
+    padding: 0.5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Global Adjustments */
+  body {
+    font-size: 0.95rem;
+  }
+  
+  section {
+    padding: 3.5rem 1.25rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  /* Sticky Header & Hamburger Menu */
+  header {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .nav-menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--dark-navy);
+    flex-direction: column;
+    padding: 1.25rem 2rem;
+    gap: 0.75rem;
+    border-bottom: 4px solid var(--action-orange);
+    box-shadow: var(--shadow-xl);
+    z-index: 999;
+  }
+
+  .nav-links.show {
+    display: flex;
+    animation: slide-down 0.3s ease;
+  }
+
+  @keyframes slide-down {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .nav-link:hover, .nav-link.active {
+    background-color: var(--light-blue);
+  }
+
+  .wejha-logo {
+    height: 42px;
+    width: 42px;
+  }
+
+  .brand-info h1 {
+    font-size: 1.05rem;
+  }
+
+  .brand-info p {
+    font-size: 0.75rem;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 3.5rem 1.25rem 4.5rem;
+  }
+
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 2.25rem;
+  }
+
+  /* KPI Grid */
+  .kpi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+  }
+
+  .kpi-card {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .kpi-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .kpi-value {
+    font-size: 2.1rem;
+  }
+
+  .kpi-label {
+    font-size: 0.8rem;
+  }
+
+  /* Dashboard Cards Grid Gap */
+  .dashboard-grid {
+    gap: 1.5rem;
+  }
+
+  /* School Comparison Grid Gap */
+  .school-comparison-grid {
+    gap: 1.25rem;
+  }
+
+  /* Major Recommendation Wizard */
+  .wizard-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .wizard-question {
+    font-size: 1.35rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .wizard-options-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .wizard-option-btn {
+    padding: 0.9rem 1.25rem;
+    font-size: 0.95rem;
+    text-align: right;
+    justify-content: flex-start;
+  }
+
+  .wizard-result-college {
+    font-size: 1.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .wizard-result-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .wizard-nav-controls {
+    margin-top: 2rem;
+    padding-top: 1rem;
+  }
+
+  /* Testimonials Slider Box */
+  .testimonial-inner {
+    padding: 2.25rem 1.25rem;
+  }
+
+  .testimonial-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .testimonial-inner::before {
+    font-size: 6rem;
+    top: -15px;
+    right: 15px;
+  }
+
+  /* Footer bottom column adjustment */
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+  }
+
+  .footer-links h4, .footer-contact h4 {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Gender Split Boxes Stacked */
+  .gender-split-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .gender-box {
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+  .gender-avatar {
+    font-size: 2.5rem;
+  }
+
+  .gender-percentage {
+    font-size: 2rem;
+  }
+
+  /* Table readability on extra small screens */
+  .data-table th, .data-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* Tags search box width stretching */
+  #explorer-search-input {
+    max-width: 100% !important;
+  }
+
+  /* Team member card sizes */
+  .team-member-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .team-member-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
+}
 
 </style>
   
@@ -1275,6 +1566,11 @@ footer {
         <a href="#skills" class="nav-link">المهارات والهوايات</a>
         <a href="#feedback" class="nav-link">آراء الطلبة</a>
       </nav>
+
+      <!-- Mobile menu toggle button -->
+      <button class="nav-menu-toggle" id="nav-menu-toggle" aria-label="القائمة">
+        <i data-lucide="menu"></i>
+      </button>
 
     </div>
   </header>
@@ -1400,7 +1696,7 @@ footer {
           <div class="school-explorer-container">
             <p style="font-size:0.95rem; color:var(--mid-gray); margin-bottom: 1.5rem;">اختر مدرستين لمقارنة أعداد الطلبة، توزيع الجنسين، والتخصصات الأكثر طلباً بينهما:</p>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="school-comparison-grid">
               <!-- School 1 Column -->
               <div class="comparison-column" style="background: rgba(0, 0, 0, 0.01); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.03);">
                 <h4 style="margin-bottom: 1rem; color: var(--primary-blue); font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="building"></i> المدرسة الأولى</h4>
@@ -3872,6 +4168,48 @@ const wejhaData = {
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize Lucide Icons
   lucide.createIcons();
+
+  // Mobile menu toggle
+  const navMenuToggle = document.getElementById('nav-menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  
+  if (navMenuToggle && navLinks) {
+    navMenuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.toggle('show');
+      const icon = navMenuToggle.querySelector('i');
+      if (icon) {
+        icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+        lucide.createIcons();
+      }
+    });
+
+    // Close when clicking a link
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        const icon = navMenuToggle.querySelector('i');
+        if (icon) {
+          icon.setAttribute('data-lucide', 'menu');
+          lucide.createIcons();
+        }
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !navMenuToggle.contains(e.target)) {
+        if (navLinks.classList.contains('show')) {
+          navLinks.classList.remove('show');
+          const icon = navMenuToggle.querySelector('i');
+          if (icon) {
+            icon.setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+          }
+        }
+      }
+    });
+  }
 
   // 2. Load General KPI Statistics
   loadKPIs();
