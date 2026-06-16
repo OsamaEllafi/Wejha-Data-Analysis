@@ -1278,9 +1278,10 @@ footer {
   gap: 2rem;
 }
 
-/* Center team cards when they collapse */
-#team-container {
-  justify-items: center;
+/* Center team cards when they collapse, while maintaining stretch widths */
+#team-container > .col-4 {
+  justify-self: center;
+  width: 100%;
 }
 
 @media (max-width: 1024px) {
@@ -2120,7 +2121,7 @@ footer {
 
   <!-- Scripts CDN -->
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   
   <!-- Data & Logic Scripts -->
   <script>
