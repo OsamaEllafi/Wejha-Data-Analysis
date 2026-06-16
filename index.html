@@ -4167,89 +4167,108 @@ const wejhaData = {
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize Lucide Icons
-  lucide.createIcons();
+  try {
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    } else {
+      console.warn("Lucide library is not loaded yet.");
+    }
+  } catch (e) {
+    console.error("Lucide failed to initialize", e);
+  }
 
   // Mobile menu toggle
-  const navMenuToggle = document.getElementById('nav-menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  
-  if (navMenuToggle && navLinks) {
-    navMenuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = navLinks.classList.toggle('show');
-      const icon = navMenuToggle.querySelector('i');
-      if (icon) {
-        icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
-        lucide.createIcons();
-      }
-    });
-
-    // Close when clicking a link
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
+  try {
+    const navMenuToggle = document.getElementById('nav-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (navMenuToggle && navLinks) {
+      navMenuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navLinks.classList.toggle('show');
         const icon = navMenuToggle.querySelector('i');
         if (icon) {
-          icon.setAttribute('data-lucide', 'menu');
-          lucide.createIcons();
+          icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+          if (typeof lucide !== 'undefined') lucide.createIcons();
         }
       });
-    });
 
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!navLinks.contains(e.target) && !navMenuToggle.contains(e.target)) {
-        if (navLinks.classList.contains('show')) {
+      // Close when clicking a link
+      navLinks.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
           navLinks.classList.remove('show');
           const icon = navMenuToggle.querySelector('i');
           if (icon) {
             icon.setAttribute('data-lucide', 'menu');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+          }
+        });
+      });
+
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !navMenuToggle.contains(e.target)) {
+          if (navLinks.classList.contains('show')) {
+            navLinks.classList.remove('show');
+            const icon = navMenuToggle.querySelector('i');
+            if (icon) {
+              icon.setAttribute('data-lucide', 'menu');
+              if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
           }
         }
-      }
-    });
+      });
+    }
+  } catch (e) {
+    console.error("Mobile navigation toggle initialization failed", e);
   }
 
+  const safeRun = (name, fn) => {
+    try {
+      fn();
+    } catch (e) {
+      console.error(`Error executing ${name}:`, e);
+    }
+  };
+
   // 2. Load General KPI Statistics
-  loadKPIs();
+  safeRun("loadKPIs", loadKPIs);
 
   // 3. Render Demographics (Academic Years & Top Schools)
-  renderDemographics();
+  safeRun("renderDemographics", renderDemographics);
 
   // 4. Render College Desires with Interactive Tabs
-  renderCollegeDesires();
+  safeRun("renderCollegeDesires", renderCollegeDesires);
 
   // 5. Render Influences & Role Models
-  renderInfluences();
+  safeRun("renderInfluences", renderInfluences);
 
   // 6. Render Skills & Hobbies
-  renderSkillsAndHobbies();
+  safeRun("renderSkillsAndHobbies", renderSkillsAndHobbies);
 
   // 7. Render Data Entry Team Contributions
-  renderTeam();
+  safeRun("renderTeam", renderTeam);
 
   // 8. Render Feedback Testimonials Slider
-  renderFeedbackSlider();
+  safeRun("renderFeedbackSlider", renderFeedbackSlider);
 
   // 9. Scroll Animation Trigger (Intersection Observer)
-  initScrollAnimations();
-
+  safeRun("initScrollAnimations", initScrollAnimations);
 
   // 11. NEW COMPONENT: Initialize School Data Explorer
-  initSchoolExplorer();
+  safeRun("initSchoolExplorer", initSchoolExplorer);
 
   // 12. NEW COMPONENT: Initialize Major Questions Hub
-  initQuestionsHub();
+  safeRun("initQuestionsHub", initQuestionsHub);
 
   // 13. NEW COMPONENT: Initialize Interactive Recommendation Wizard
-  initRecommendationWizard();
+  safeRun("initRecommendationWizard", initRecommendationWizard);
 
   // 14. NEW COMPONENT: Initialize Timeline Chart
-  initTimelineChart();
+  safeRun("initTimelineChart", initTimelineChart);
 
   // 15. NEW COMPONENT: Initialize Skills & Hobbies Tag Explorer
-  initTagExplorer();
+  safeRun("initTagExplorer", initTagExplorer);
 });
 
 // Primary Palette (matches Wejha Brand Guidelines v2)
@@ -4931,6 +4950,11 @@ function renderFeedbackSlider() {
 function initScrollAnimations() {
   const animatedElements = document.querySelectorAll('.fade-in-up');
   
+  if (!('IntersectionObserver' in window)) {
+    animatedElements.forEach(el => el.classList.add('active'));
+    return;
+  }
+  
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -4939,7 +4963,7 @@ function initScrollAnimations() {
       }
     });
   }, {
-    threshold: 0.1
+    threshold: 0.02
   });
 
   animatedElements.forEach(el => {
